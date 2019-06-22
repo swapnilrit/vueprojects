@@ -1,8 +1,11 @@
 <template>
   <div class="movieList">
-    <movie-sub-list title="Latest" :generes="generes" :movieListDetails="latestMovies"/>
-    <movie-sub-list title="Trending" :generes="generes" :movieListDetails="trendingMovies"/>
-    <movie-sub-list title="Most Watched" :generes="generes" :movieListDetails="mostWatchedMovies"/>
+    <movie-sub-list  v-for="list in movieLists"
+                     :key="list.title"
+                     :title="list.title" 
+                     :generes="generes" 
+                     :movieListDetails="list.movieListDetails"
+                     @toggleDetailsModal="toggleDetailsModal"/>
   </div>
 </template>
 
@@ -10,11 +13,28 @@
 import movieSubList from "./movieSubList.vue";
 export default {
   name: 'movieList',
-  created(){
-   console.log(this.generes);
-  },
   props:["generes","latestMovies","trendingMovies","mostWatchedMovies"],
+  computed:{
+   movieLists(){
+     return [{
+                title:"Latest",
+                movieListDetails:this.latestMovies
+            },{
+                title:"Trending",
+                movieListDetails:this.trendingMovies
+            },
+            {
+                title:"Most Watched",
+                movieListDetails:this.mostWatchedMovies
+            }]
+   }
+  },
   components:{movieSubList},
+  methods:{
+    toggleDetailsModal(){
+    this.$emit("toggleDetailsModal");
+    }
+  }
   
 }
 </script>

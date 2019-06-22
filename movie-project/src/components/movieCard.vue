@@ -1,7 +1,7 @@
 <template>
   <div class="movieCard" v-if="movieGenres.length">
      <el-card>
-      <img :src="imgUrl" class="image">
+      <img :src="imgUrl" class="image" @click="toggleDetailsModal">
       <div class="cardDeatils">
         <div class="movieName">{{cardDetails.title}} </div>
         <div class="movieGenres"> {{movieGenres.join(",")}}</div>
@@ -30,6 +30,16 @@ export default {
          });
          return geners;
     }  
+  },
+  methods:{
+    toggleDetailsModal(){
+    let cardData={
+       cardDeatils:this.cardDetails,
+       geners:this.movieGenres.join(",")
+    };
+     this.$emit("toggleDetailsModal");
+
+    }
   }
 }
 </script>

@@ -2,7 +2,11 @@
   <div class="movieSubList">
     <div class="movieTypeTitle"> {{title}} </div>
     <div class="list">
-      <movieCard v-for="card in movieListDetails" :key="card.id" :cardDetails="card" :generes="generes" />
+      <movieCard v-for="card in movieListDetails" 
+                 :key="card.id" 
+                 :cardDetails="card" 
+                 :generes="generes"
+                 @toggleDetailsModal="toggleDetailsModal" />
     </div>
   </div>
 </template>
@@ -12,7 +16,12 @@ import movieCard from "./movieCard.vue";
 export default {
   name: 'movieSubList',
   props:["title","movieListDetails","generes"],
-  components:{movieCard}
+  components:{movieCard},
+  methods:{
+    toggleDetailsModal(){
+      this.$emit("toggleDetailsModal");
+    }
+  }
 }
 </script>
 

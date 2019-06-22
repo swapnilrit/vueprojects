@@ -1,16 +1,19 @@
 <template>
   <div class="home">
+  <detailsModal v-if="detailsModalVisibility" @toggleDetailsModal="toggleDetailsModal"/>  
   <component :is="activeComponent" 
              :generes="generes"
              :latestMovies="latestMovies" 
              :trendingMovies="trendingMovies"
-             :mostWatchedMovies="mostWatchedMovies" 
+             :mostWatchedMovies="mostWatchedMovies"
+             @toggleDetailsModal="toggleDetailsModal" 
              />
   </div>
 </template>
 
 <script>
  import movieList from "../components/movieList";
+ import detailsModal from "../components/detailsModal";
 
  export default {
   name: 'home',
@@ -36,9 +39,15 @@
    },
    data(){
      return{
-       activeComponent:'movieList'
+       activeComponent:'movieList',
+       detailsModalVisibility:false
      }
    },
-   components:{movieList}
+   components:{movieList,detailsModal},
+   methods:{
+      toggleDetailsModal(){
+        this.detailsModalVisibility= !this.detailsModalVisibility;
+      }
+   }
 }
 </script>
