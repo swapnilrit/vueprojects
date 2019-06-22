@@ -1,18 +1,44 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <component :is="activeComponent" 
+             :generes="generes"
+             :latestMovies="latestMovies" 
+             :trendingMovies="trendingMovies"
+             :mostWatchedMovies="mostWatchedMovies" 
+             />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+ import movieList from "../components/movieList";
 
-export default {
+ export default {
   name: 'home',
-  components: {
-    HelloWorld
-  }
+  created(){
+     this.$store.dispatch("getGeneres");
+     this.$store.dispatch("getLatestMovies");
+     this.$store.dispatch("getTrendingMovies");
+     this.$store.dispatch("getMostWatchedMovies");
+   },
+   computed:{
+     generes(){
+       return this.$store.getters.getGeneres;
+    },
+    latestMovies(){
+      return this.$store.getters.getLatestMovies;
+    },
+    trendingMovies(){
+       return this.$store.getters.getTrendingMovies;
+    },
+    mostWatchedMovies(){
+      return this.$store.getters.getMostWatchedMovies;
+    }
+   },
+   data(){
+     return{
+       activeComponent:'movieList'
+     }
+   },
+   components:{movieList}
 }
 </script>
