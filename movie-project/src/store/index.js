@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios';
 import movieList from './modules/movieList';
 import movieGenres from './modules/movieGenres';
+import movieDetails from "./modules/movieDetails";
 
 Vue.use(Vuex)
 
@@ -15,7 +16,8 @@ export default new Vuex.Store({
   },
   modules:{
    movieList,
-   movieGenres
+   movieGenres,
+   movieDetails
   },
   actions: {
     getAjaxData({commit,dispatch,state},{url}){

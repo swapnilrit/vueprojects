@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-  <detailsModal v-if="detailsModalVisibility" @toggleDetailsModal="toggleDetailsModal"/>  
+  <detailsModal v-if="detailsModalVisibility"
+   :cardDetails="cardDetails"
+    @toggleDetailsModal="toggleDetailsModal"/>  
   <component :is="activeComponent" 
              :generes="generes"
              :latestMovies="latestMovies" 
@@ -40,12 +42,16 @@
    data(){
      return{
        activeComponent:'movieList',
-       detailsModalVisibility:false
+       detailsModalVisibility:false,
+       cardDetails:{}
      }
    },
    components:{movieList,detailsModal},
    methods:{
-      toggleDetailsModal(){
+      toggleDetailsModal(cardData){
+        if(cardData){
+         this.cardDetails=cardData;
+        }
         this.detailsModalVisibility= !this.detailsModalVisibility;
       }
    }

@@ -2,7 +2,7 @@ import Vue from "vue";
 
 export default {
     state: {
-     movieDetails:[]
+     movieDetails:{}
     },
     getters:{
       getMovieDetails(state){
@@ -10,11 +10,10 @@ export default {
       }
      },
     actions: {
-        getMovieDetails({dispatch,state,rootState}){
-         
-        dispatch("getAjaxData",{url:`https://api.themoviedb.org/3/genre/movie/list?api_key=${rootState.apiKey}&language=en-US`})
+        getMovieDetails({dispatch,state,rootState},{id}){ 
+        dispatch("getAjaxData",{url:`https://api.themoviedb.org/3/movie/${id}?api_key=${rootState.apiKey}&language=en-US&append_to_response=credits`})
                 .then((response)=>{
-                 Vue.set(state,"generes",response.genres);
+                 Vue.set(state,"movieDetails",response);
                 })
                 .then((error)=>{
                     console.log(error);

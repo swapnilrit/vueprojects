@@ -18,8 +18,8 @@ export default {
   props:["title","movieListDetails","generes"],
   components:{movieCard},
   methods:{
-    toggleDetailsModal(){
-      this.$emit("toggleDetailsModal");
+    toggleDetailsModal(cardData){
+      this.$emit("toggleDetailsModal",cardData);
     }
   }
 }

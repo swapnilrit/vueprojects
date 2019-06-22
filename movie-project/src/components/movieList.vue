@@ -31,8 +31,8 @@ export default {
   },
   components:{movieSubList},
   methods:{
-    toggleDetailsModal(){
-    this.$emit("toggleDetailsModal");
+    toggleDetailsModal(cardData){
+    this.$emit("toggleDetailsModal",cardData);
     }
   }
   

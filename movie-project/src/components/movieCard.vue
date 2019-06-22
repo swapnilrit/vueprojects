@@ -6,7 +6,8 @@
         <div class="movieName">{{cardDetails.title}} </div>
         <div class="movieGenres"> {{movieGenres.join(",")}}</div>
         <div class="movieRating">
-        <el-rate v-model="cardDetails.vote_average/2"></el-rate>   
+        <el-rate v-model="cardDetails.vote_average/2" disabled></el-rate>   
+        <div class="showmore">Show More</div>
         </div>
       </div>
       
@@ -34,10 +35,10 @@ export default {
   methods:{
     toggleDetailsModal(){
     let cardData={
-       cardDeatils:this.cardDetails,
+       card:this.cardDetails,
        geners:this.movieGenres.join(",")
     };
-     this.$emit("toggleDetailsModal");
+     this.$emit("toggleDetailsModal",cardData);
 
     }
   }
@@ -60,6 +61,18 @@ export default {
     font-weight: 200;
     font-size: 19px;
   }
+}
+.movieRating{
+  display: flex;
+  align-items: center;
+  font-size:15px;
+  color:blue;
+}
+.movieRating div:first-child{
+  flex-grow: 3;
+}
+.showmore{
+  flex-grow: 1;
 }
 
 </style>
