@@ -73,6 +73,7 @@ export default {
 }
 .showmore{
   flex-grow: 1;
+  cursor: pointer;
 }
 
 </style>
