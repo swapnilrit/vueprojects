@@ -7,7 +7,7 @@
         <div class="movieGenres"> {{movieGenres.join(",")}}</div>
         <div class="movieRating">
         <el-rate v-model="cardDetails.vote_average/2" disabled></el-rate>   
-        <div class="showmore">Show More</div>
+        <div class="showmore">Show more</div>
         </div>
       </div>
       
