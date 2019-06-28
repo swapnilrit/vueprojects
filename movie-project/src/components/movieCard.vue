@@ -71,9 +71,6 @@ export default {
 .movieRating div:first-child{
   flex-grow: 3;
 }
-.showmore{
-  flex-grow: 1;
-  cursor: pointer;
-}
+
 
 </style>
